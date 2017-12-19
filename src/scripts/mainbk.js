@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // Terminal typing animation
     $("#from-terminal p").typed({
-        strings: ["curl --upload-file ./hello.txt https://transfer.sh/hello.txt\nhttps://transfer.sh/66nb8/hello.txt \n "],
+        strings: ["curl --upload-file ./hello.txt https://pirates.suka.se/hello.txt\nhttps://pirates.suka.se/66nb8/hello.txt \n "],
         typeSpeed: 0,
         loop: true,
     });
