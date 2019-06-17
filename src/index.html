@@ -23,12 +23,12 @@ include "includes/head.html"
                     <div id="terminal" class="terminal">
                         <code>
                             <span class="code-title"># Upload using cURL</span>
-                            <br>$ curl --upload-file ./hello.txt https://pirates.suka.se/hello.txt https://pirates.suka.se/66nb8/hello.txt
+                            <br>$ curl --upload-file ./hello.txt https://bucket.ftp.sh/hello.txt https://bucket.ftp.sh/66nb8/hello.txt
                             <br>
                             <br>
                             <span class="code-title"># Using the alias</span>
                             <br>$ transfer hello.txt
-                            <br>##################################################### 100.0% https://pirates.suka.se/eibhM/hello.txt
+                            <br>##################################################### 100.0% https://bucket.ftp.sh/eibhM/hello.txt
                         </code>
                     </div>
                     <div id="web">
@@ -71,14 +71,14 @@ include "includes/head.html"
                     <div class="terminal">
                         <code>
                             <span class="code-title"># Uploading is easy using curl</span>
-                            <br>$ curl --upload-file ./hello.txt https://pirates.suka.se/hello.txt
-                            <br>https://pirates.suka.se/66nb8/hello.txt
+                            <br>$ curl --upload-file ./hello.txt https://bucket.ftp.sh/hello.txt
+                            <br>https://bucket.ftp.sh/66nb8/hello.txt
                             <br/>
-                            <br>$ curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./hello.txt https://pirates.suka.se/hello.txt
-                            <br>https://pirates.suka.se/66nb8/hello.txt
+                            <br>$ curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./hello.txt https://bucket.ftp.sh/hello.txt
+                            <br>https://bucket.ftp.sh/66nb8/hello.txt
                             <br>
                             <span class="code-title"># Download the file</span>
-                            <br>$ curl https://pirates.suka.se/66nb8/hello.txt -o hello.txt
+                            <br>$ curl https://bucket.ftp.sh/66nb8/hello.txt -o hello.txt
                         </code>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ include "includes/head.html"
                     <div class="terminal">
                         <code>
                             <span class="code-title"># Add this to .bashrc or its equivalent</span>
-                            <br/>transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi <br/>tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://pirates.suka.se/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://pirates.suka.se/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+                            <br/>transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi <br/>tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://bucket.ftp.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://bucket.ftp.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
                             <br/>
                             <br/>
                             <span class="code-title"># Now you can use transfer command</span>
@@ -110,12 +110,12 @@ include "includes/head.html"
                         </div>
                         <div class="terminal">
                             <code>
-                                <br>$ curl -i -F filedata=@/tmp/hello.txt -F filedata=@/tmp/hello2.txt https://pirates.suka.se/
+                                <br>$ curl -i -F filedata=@/tmp/hello.txt -F filedata=@/tmp/hello2.txt https://bucket.ftp.sh/
                                 <br>
                                 <br>
                                 <span class="code-title"># Combining downloads as zip or tar archive</span>
-                                <br>$ curl https://pirates.suka.se/(15HKz/hello.txt,15HKz/hello.txt).tar.gz
-                                <br/>$ curl https://pirates.suka.se/(15HKz/hello.txt,15HKz/hello.txt).zip
+                                <br>$ curl https://bucket.ftp.sh/(15HKz/hello.txt,15HKz/hello.txt).tar.gz
+                                <br/>$ curl https://bucket.ftp.sh/(15HKz/hello.txt,15HKz/hello.txt).zip
                             </code>
                         </div>
 
@@ -128,11 +128,11 @@ include "includes/head.html"
                         <div class="terminal">
                             <code>
                                 <span class="code-title"># Encrypt files with password using gpg</span>
-                                <br>$ cat /tmp/hello.txt|gpg -ac -o-|curl -X PUT --upload-file "-" https://pirates.suka.se/test.txt
+                                <br>$ cat /tmp/hello.txt|gpg -ac -o-|curl -X PUT --upload-file "-" https://bucket.ftp.sh/test.txt
                                 <br>
                                 <br>
                                 <span class="code-title"># Download and decrypt</span>
-                                <br>$ curl https://pirates.suka.se/1lDau/test.txt|gpg -o- > /tmp/hello.txt
+                                <br>$ curl https://bucket.ftp.sh/1lDau/test.txt|gpg -o- > /tmp/hello.txt
                             </code>
                         </div>
                     </div>
@@ -147,11 +147,11 @@ include "includes/head.html"
                             <code>
                                 <span class="code-title"># Scan for malware or viruses using Clamav</span>
                                 <br>$ wget http://www.eicar.org/download/eicar.com
-                                <br>$ curl -X PUT --upload-file ./eicar.com https://pirates.suka.se/eicar.com/scan
+                                <br>$ curl -X PUT --upload-file ./eicar.com https://bucket.ftp.sh/eicar.com/scan
                                 <br>
                                 <br>
                                 <span class="code-title"># Upload malware to VirusTotal, get a permalink in return</span>
-                                <br>$ curl -X PUT --upload-file nhgbhhj https://pirates.suka.se/test.txt/virustotal
+                                <br>$ curl -X PUT --upload-file nhgbhhj https://bucket.ftp.sh/test.txt/virustotal
                                 <br>
                             </code>
                         </div>
@@ -163,7 +163,7 @@ include "includes/head.html"
                         <div class="terminal">
                             <code>
                                 <span class="code-title"># Backup, encrypt and transfer</span>
-                                <br/>$ mysqldump --all-databases|gzip|gpg -ac -o-|curl -X PUT --upload-file "-" https://pirates.suka.se/test.txt</code>
+                                <br/>$ mysqldump --all-databases|gzip|gpg -ac -o-|curl -X PUT --upload-file "-" https://bucket.ftp.sh/test.txt</code>
                         </div>
                     </div>
                 </div>
@@ -188,9 +188,9 @@ include "includes/head.html"
                                 <span class="code-title"># Import keys from keybase</span>
                                 <br/>$ keybase track [them]
                                 <span class="code-title"># Encrypt for recipient(s)</span>
-                                <br/>$ cat somebackupfile.tar.gz | keybase encrypt [them] | curl --upload-file '-' https://pirates.suka.se/test.txt
+                                <br/>$ cat somebackupfile.tar.gz | keybase encrypt [them] | curl --upload-file '-' https://bucket.ftp.sh/test.txt
                                 <span class="code-title"># Decrypt</span>
-                                <br/>$ curl https://pirates.suka.se/sqUFi/test.md |keybase decrypt
+                                <br/>$ curl https://bucket.ftp.sh/sqUFi/test.md |keybase decrypt
                             </code>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ include "includes/head.html"
                         <div class="terminal">
                             <code>
                                 <span class="code-title"># wget</span>
-                                <br/>$ wget --method PUT --body-file=/tmp/file.tar https://pirates.suka.se/file.tar -O - -nv
+                                <br/>$ wget --method PUT --body-file=/tmp/file.tar https://bucket.ftp.sh/file.tar -O - -nv
                             </code>
                         </div>
                     </div>
@@ -214,7 +214,7 @@ include "includes/head.html"
                         <div class="terminal">
                             <code>
                                 <span class="code-title"># grep syslog for pound and transfer</span>
-                                <br/>$ cat /var/log/syslog|grep pound|curl --upload-file - https://pirates.suka.se/pound.log
+                                <br/>$ cat /var/log/syslog|grep pound|curl --upload-file - https://bucket.ftp.sh/pound.log
                             </code>
                         </div>
                     </div>
@@ -229,7 +229,7 @@ include "includes/head.html"
                             <code>
                                 <span class="code-title"># Upload using Powershell
                                 <br/>
-                                PS H:\&gt; invoke-webrequest -method put -infile .\file.txt https://pirates.suka.se/file.txt
+                                PS H:\&gt; invoke-webrequest -method put -infile .\file.txt https://bucket.ftp.sh/file.txt
                             </code>
                         </div>
                     </div>
@@ -241,7 +241,7 @@ include "includes/head.html"
                             <code>
                                 <span class="code-title"># HTTPie
                                 <br/>
-                                $ http https://pirates.suka.se/ -vv &lt; /tmp/test.log
+                                $ http https://bucket.ftp.sh/ -vv &lt; /tmp/test.log
                             </code>
                         </div>
                     </div>
